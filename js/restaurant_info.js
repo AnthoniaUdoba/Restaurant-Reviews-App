@@ -25,7 +25,8 @@ initMap = () => {
       L.tileLayer(
         "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}",
         {
-          mapboxToken: "XXXXXXXXXX",
+          mapboxToken:
+            "pk.eyJ1IjoiZXhxdWlzaXRlLXRvbmlhMDciLCJhIjoiY2xjbm5uNTh0MXBuaTNwcDYzd2N1ejc4bCJ9.NHsR3KHr5uip_cE3Sv1kFA",
           maxZoom: 18,
           attribution:
             'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -89,16 +90,21 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById("restaurant-name");
   name.innerHTML = restaurant.name;
+  name.tabIndex = 0;
 
   const address = document.getElementById("restaurant-address");
   address.innerHTML = restaurant.address;
+  address.tabIndex = 0;
 
   const image = document.getElementById("restaurant-img");
   image.className = "restaurant-img";
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.tabIndex = 0;
+  image.alt = restaurant.name + " restaurant promotional image";
 
   const cuisine = document.getElementById("restaurant-cuisine");
   cuisine.innerHTML = restaurant.cuisine_type;
+  cuisine.tabIndex = 0;
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -159,6 +165,7 @@ createReviewHTML = (review) => {
   const li = document.createElement("li");
   const name = document.createElement("p");
   name.innerHTML = review.name;
+  li.tabIndex = 0;
   li.appendChild(name);
 
   const date = document.createElement("p");
